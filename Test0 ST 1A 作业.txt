@@ -131,3 +131,431 @@ F  E  D  C  B  A  9 8 7 6 5 4 3 2 1 0
 |6a.  D2        =13*16+2          =210         =128+64+16+2   =11010010
 |6b.  9B        =9*16+11          =155         =128+16+8+2+1  =10011011
 |6c.  192       =1*16^2+9*16^1+2  =256+144+2   =256+128+16    =110010000
+
+=====================
+
+4903
+
+进192.168.35.30服务器
+
+login as: u250335363
+Pre-authentication banner message from server:
+| Welcome  ... >>
+| IVE_ST_IT
+|
+End of banner message from server
+u250335363@192.168.35.30's password:
+Welcome to Ubuntu 16.04.7 LTS (GNU/Linux 4.8.0-32-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+  System information as of Thu Sep  4 15:54:34 HKT 2025
+
+  System load:  0.57               Processes:           327
+  Usage of /:   68.1% of 56.21GB   Users logged in:     10
+  Memory usage: 19%                IP address for eth0: 192.168.35.30
+  Swap usage:   12%
+
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+Expanded Security Maintenance for Infrastructure is enabled.
+
+187 updates can be applied immediately.
+185 of these updates are ESM Infra security updates.
+2 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+New release '18.04.6 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+
+进SQL
+
+$
+$ sqlplus u250335363@itp4903
+
+SQL*Plus: Release 12.1.0.2.0 Production on Thu Sep 4 15:57:05 2025
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Enter password:
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing opt                                                                                              ions
+
+
+
+SQL>
+SQL> CREATE TABLE employee (
+        empid   NUMBER(5)       NOT NULL,
+        lname   VARCHAR2(30)    NOT NULL,
+        fname   VARCHAR2(30)    NOT NULL,
+        dob     DATE            NULL,
+        salary  NUMBER(7,2)     NULL,
+        CONSTRAINT employee_pk PRIMARY KEY (empid)
+);  2    3    4    5    6    7    8
+
+Table created.
+
+
+
+SQL> SELECT * FROM tab;
+
+
+TNAME
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID
+------- ----------
+DEPT
+SYNONYM
+
+EMP
+SYNONYM
+
+EMPLOYEE
+TABLE
+
+
+TNAME
+--------------------------------------------------------------------------------
+TABTYPE  CLUSTERID
+------- ----------
+SALGRADE
+SYNONYM
+
+
+SQL> SET LINESIZE 150
+
+SQL> SHOW USER
+USER is "U250335363"
+
+
+SQL> DROP TABLE employee;
+
+Table dropped.
+
+SQL> CREATE TABLE employee (
+        empid   NUMBER(5)       NOT NULL,
+        lname   VARCHAR2(30)    NOT NULL,
+        fname   VARCHAR2(30)    NOT NULL,
+        dob     DATE            NULL,
+        salary  NUMBER(7,2)     NULL,
+        CONSTRAINT employee_pk PRIMARY KEY (empid)
+);
+SQL>   2    3    4    5    6    7    8
+
+Table created.
+
+
+SQL> SET LINESIZE 150
+SQL> SET PAGESIZE 100
+SQL> SELECT * FROM tab;
+
+TNAME                                                                                                                                                                         TABTYPE  CLUSTERID
+---------------------------------------------------------------------------------------------------------------------                                                         ----------- ------- ----------
+BIN$PeEkTzd0Cb3gYwEAAH+wCA==$0                                                                                                                                                TABLE
+DEPT                                                                                                                                                                          SYNONYM
+EMP                                                                                                                                                                           SYNONYM
+EMPLOYEE                                                                                                                                                                      TABLE
+SALGRADE                                                                                                                                                                      SYNONYM
+
+SQL> SET PAGESIZE 24
+SQL> SET LINESIZE 78
+SQL>  SELECT * FROM tab;
+
+TNAME
+------------------------------------------------------------------------------
+TABTYPE  CLUSTERID
+------- ----------
+BIN$PeEkTzd0Cb3gYwEAAH+wCA==$0
+TABLE
+
+DEPT
+SYNONYM
+
+EMP
+SYNONYM
+
+EMPLOYEE
+TABLE
+
+SALGRADE
+SYNONYM
+
+
+SQL> DESC employee
+ Name                                     Null?    Type
+ ---------------------------------------- -------- ---------------------------
+ EMPID                                    NOT NULL NUMBER(5)
+ LNAME                                    NOT NULL VARCHAR2(30)
+ FNAME                                    NOT NULL VARCHAR2(30)
+ DOB                                               DATE
+ SALARY                                            NUMBER(7,2)
+
+SQL> SELECT * FROM employee;
+
+no rows selected
+
+SQL> INSERT INTO employee VALUES (105, 'Lau', 'Andy', '14-JUL-79', 32000);
+INSERT INTO employee VALUES (247, 'Lai', 'Leon', '02-FEB-78', 41000);
+INSERT INTO employee VALUES (318, 'Cheung', 'Jacky', '09-MAY-77', 38000);
+INSERT INTO employee VALUES (404, 'Kwok', 'Aaron', '01-MAR-79', 43000);
+INSERT INTO employee VALUES (525, 'Mui', 'Anita', '05-AUG-78', 36500);
+1 row created.
+
+SQL>
+1 row created.
+
+SQL>
+1 row created.
+
+SQL>
+1 row created.
+
+SQL> SELECT * FROM employee;
+INSERT INTO employee VALUES (525, 'Mui', 'Anita', '05-AUG-78', 36500);
+
+SQL> SELECT * FROM employee;
+
+     EMPID LNAME                          FNAME
+---------- ------------------------------ ------------------------------
+DOB           SALARY
+--------- ----------
+       105 Lau                            Andy
+14-JUL-79      32000
+
+       247 Lai                            Leon
+02-FEB-78      41000
+
+       318 Cheung                         Jacky
+09-MAY-77      38000
+
+       404 Kwok                           Aaron
+01-MAR-79      43000
+
+
+SQL> SET PAGESIZE 24
+SQL> SET LINESIZE 78
+SQL> SELECT * FROM employee;
+
+
+SQL> DESC employee
+ Name                                     Null?    Type
+ ---------------------------------------- -------- ---------------------------
+ EMPID                                    NOT NULL NUMBER(5)
+ LNAME                                    NOT NULL VARCHAR2(30)
+ FNAME                                    NOT NULL VARCHAR2(30)
+ DOB                                               DATE
+ SALARY                                            NUMBER(7,2)
+
+SQL> COLUMN empid FORMAT 999999
+SQL> COLUMN lname FORMAT A8
+COLUMN fname FORMAT A8
+COLUMN dob FORMAT A10
+COLUMN salary FORMAT 999,999.99
+SQL> 
+SQL>
+SQL>
+SQL>
+SQL> SELECT * FROM employee;
+
+  EMPID LNAME    FNAME    DOB             SALARY
+------- -------- -------- ---------- -----------
+    105 Lau      Andy     14-JUL-79    32,000.00
+    247 Lai      Leon     02-FEB-78    41,000.00
+    318 Cheung   Jacky    09-MAY-77    38,000.00
+    404 Kwok     Aaron    01-MAR-79    43,000.00
+
+SQL> COLUMN empid FORMAT 000009
+SQL> SELECT * FROM employee;
+
+  EMPID LNAME    FNAME    DOB             SALARY
+------- -------- -------- ---------- -----------
+ 000105 Lau      Andy     14-JUL-79    32,000.00
+ 000247 Lai      Leon     02-FEB-78    41,000.00
+ 000318 Cheung   Jacky    09-MAY-77    38,000.00
+ 000404 Kwok     Aaron    01-MAR-79    43,000.00
+
+SQL> COLUMN salary FORMAT $99,999.99
+SQL> SELECT * FROM employee;
+
+  EMPID LNAME    FNAME    DOB             SALARY
+------- -------- -------- ---------- -----------
+ 000105 Lau      Andy     14-JUL-79   $32,000.00
+ 000247 Lai      Leon     02-FEB-78   $41,000.00
+ 000318 Cheung   Jacky    09-MAY-77   $38,000.00
+ 000404 Kwok     Aaron    01-MAR-79   $43,000.00
+
+SQL> COLUMN dob FORMAT A10 HEADING 'Birthday'
+SQL> COLUMN empid HEADING 'Employee|ID'
+SQL> COLUMN lname HEADING 'Last|Name'
+SQL> COLUMN fname HEADING 'First|Name'
+SQL> COLUMN salary HEADING 'Employee|Pay'
+SQL> SELECT lname, fname, salary FROM employee;
+
+Last     First       Employee
+Name     Name             Pay
+-------- -------- -----------
+Lau      Andy      $32,000.00
+Lai      Leon      $41,000.00
+Cheung   Jacky     $38,000.00
+Kwok     Aaron     $43,000.00
+
+SQL> SELECT * FROM employee WHERE lname = 'Lai';
+
+Employee Last     First                  Employee
+      ID Name     Name     Birthday           Pay
+-------- -------- -------- ---------- -----------
+  000247 Lai      Leon     02-FEB-78   $41,000.00
+
+SQL> INSERT INTO employee VALUES (111, 'Chan', 'Jacky', '03-AUG-54', 85000);
+
+1 row created.
+
+
+
+
+
+SQL>  SELECT * FROM employee;
+
+Employee Last     First                  Employee
+      ID Name     Name     Birthday           Pay
+-------- -------- -------- ---------- -----------
+  000105 Lau      Andy     14-JUL-79   $32,000.00
+  000247 Lai      Leon     02-FEB-78   $41,000.00
+  000318 Cheung   Jacky    09-MAY-77   $38,000.00
+  000404 Kwok     Aaron    01-MAR-79   $43,000.00
+  000111 Chan     Jacky    03-AUG-54   $85,000.00
+
+
+
+
+
+
+
+
+SQL> SELECT * FROM employee WHERE lname = 'Cheung';
+
+Employee Last     First                  Employee
+      ID Name     Name     Birthday           Pay
+-------- -------- -------- ---------- -----------
+  000318 Cheung   Jacky    09-MAY-77   $38,000.00
+
+
+
+SQL> SELECT fname, dob FROM employee WHERE lname = 'Cheung';
+
+First
+Name     Birthday
+-------- ----------
+Jacky    09-MAY-77
+
+
+
+
+
+SQL> CREATE TABLE student (
+        std_id  NUMBER(9)       NOT NULL,
+        lname   VARCHAR2(20)    NOT NULL,
+        fname   VARCHAR2(20)    NOT NULL,
+        course  NUMBER(8)       NOT NULL,
+        CONSTRAINT student_pk PRIMARY KEY (std_id)
+);  2    3    4    5    6    7
+
+Table created.
+
+SQL> SELECT * FROM student;
+
+no rows selected
+
+
+SQL> DESC student
+ Name                                     Null?    Type
+ ---------------------------------------- -------- ---------------------------
+ STD_ID                                   NOT NULL NUMBER(9)
+ LNAME                                    NOT NULL VARCHAR2(20)
+ FNAME                                    NOT NULL VARCHAR2(20)
+ COURSE                                   NOT NULL NUMBER(8)
+
+
+
+
+
+
+
+
+
+
+
+
+
+DROP TABLE employee;
+CREATE TABLE employee (
+	empid 	NUMBER(5) 	NOT NULL,
+	lname 	VARCHAR2(30)  	NOT NULL,
+	fname 	VARCHAR2(30) 	NOT NULL,
+   	dob  	DATE 		NULL,
+	salary 	NUMBER(7,2)	NULL, 
+	CONSTRAINT employee_pk PRIMARY KEY (empid)
+);
+
+
+
+
+INSERT INTO employee VALUES (105, 'Lau', 'Andy', '14-JUL-79', 32000);
+INSERT INTO employee VALUES (247, 'Lai', 'Leon', '02-FEB-78', 41000);
+INSERT INTO employee VALUES (318, 'Cheung', 'Jacky', '09-MAY-77', 38000);
+INSERT INTO employee VALUES (404, 'Kwok', 'Aaron', '01-MAR-79', 43000);
+INSERT INTO employee VALUES (525, 'Mui', 'Anita', '05-AUG-78', 36500);
+
+
+COLUMN lname FORMAT A8
+COLUMN fname FORMAT A8
+COLUMN dob FORMAT A10
+COLUMN salary FORMAT 999,999.99
+
+
+=====================
+
+Q10:
+
+When you used the 'COLUMN empid FORMAT 000009' command,the <empid> line from <employee> table will insert zero before the original number.
+And after the command'COLUMN salary FORMAT $99,999.99',you will see the '$' sign before the salary number in <salary> line
+
+=====================
+
+Q14:
+
+INSERT INTO employee VALUES (111, 'Chan', 'Jacky', '03-AUG-54', 85000);
+
+=====================
+
+Q15:
+
+SELECT fname, dob FROM employee WHERE lname = 'Cheung';
+
+====================
+
+Q16:
+
+CREATE TABLE student (
+	std_id 	NUMBER(9) 	NOT NULL,
+	lname 	VARCHAR2(20)  	NOT NULL,
+	fname 	VARCHAR2(20) 	NOT NULL,
+   	course 	NUMBER(8)	NOT NULL, 
+	CONSTRAINT student_pk PRIMARY KEY (std_id)
+);
+
+SELECT * FROM student;
